@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+
 class SingleUser extends React.Component {
     state = {
         project: ''
@@ -19,7 +20,7 @@ class SingleUser extends React.Component {
     render(){
         if(!this.state.project) return <h1>Opps!</h1>;
         return(
-            <div>
+            <div className="single-project-wrapper">
                 <h1>{this.state.project.name}</h1>
                 {this.state.project.actions.map(action => {
                     return (
