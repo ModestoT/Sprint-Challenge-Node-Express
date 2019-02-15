@@ -15,4 +15,14 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+        const action = await Actions.get(req.params.id);
+        res.status(200).json(action);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "The projects information could not be retrieved." });
+    }
+});
+
 module.exports = router;
