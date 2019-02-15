@@ -24,7 +24,7 @@ class SingleUser extends React.Component {
                 <h1>{this.state.project.name}</h1>
                 {this.state.project.actions.map(action => {
                     return (
-                        <div className="actions">
+                        <div className="actions" key={action.id}>
                             <h2>Action</h2>
                             <p>description: {action.description}</p>
                             <p>notes: {action.notes}</p>
