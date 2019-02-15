@@ -54,4 +54,24 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+router.put('/:id', async (req, res) => {
+
+    if(!req.body.name || !req.body.description){
+        res.status(400).json({ errorMessage: "Please provide new name and description for the project." })
+    } else {
+        try {
+            const updated = await Projects.update(req.params.id, req.body);
+            if(updated) {
+                const updatedProject = await Projects.get(req.params.id);
+                res.status(200).json(updatedProject);
+            } else {
+                res.status(404).json({ errorMessage: "The project with the specified ID does not exist." });
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: 'Error updating project' });
+        }
+    }
+});
+
 module.exports = router;
