@@ -24,6 +24,16 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.get('/actions/:id', async (req, res) => {
+    try {
+        const projectActions = await Projects.getProjectActions(req.params.id);
+        res.status(200).json(projectActions);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "The projects information could not be retrieved." });
+    }
+});
+
 router.post('/', async (req, res) => {
     if(!req.body.name || !req.body.description){
         res.status(400).json({ errorMessage: 'Please provide name and description for the project' });
